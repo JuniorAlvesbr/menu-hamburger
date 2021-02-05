@@ -1,24 +1,47 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from 'react';
+import Header from "./components/Header";
+import Hamburger from "./components/Hamburger";
+import Menu from "./components/Menu";
 
 function App() {
+  const menuItems = [
+    {
+      id: '1',
+      Item: 'Home'
+    },
+    {
+      id: '2',
+      Item: 'Noticias'
+    },
+    {
+      id: '3',
+      Item: 'Informativos'
+    },
+    {
+      id: '4',
+      Item: 'Curiosidade'
+    },
+    {
+      id: '5',
+      Item: 'Sobre'
+    },
+  ];
+
+  // const menuItems = ['Home', 'Noticias', 'Informativos', 'Curiosidade', 'Sobre']
+
+  const [active, setActive] = useState(false);
+
+  function handleClick() {
+    setActive((old) => !old)
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Header>
+        <Hamburger active={active} handleClick={handleClick} />
+      </Header>
+      <Menu MenuItems={menuItems} active={active} />
+    </>
   );
 }
 
